@@ -117,4 +117,10 @@ public class TelaCategoria : TelaBase, ITelaOpcoes
 
         return base.ExisteRegistroComInformacoesExclusivas(entidade);
     }
+
+    protected override bool ExistemDependenciasAtivasDoRegistro(int idRegistro)
+    {
+        // TODO - Não permitir excluir uma categoria caso tenha produtos vinculados
+        return base.ExistemDependenciasAtivasDoRegistro(idRegistro);
+    }
 }
