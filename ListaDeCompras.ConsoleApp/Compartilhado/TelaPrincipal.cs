@@ -41,7 +41,7 @@ public class TelaPrincipal
         string? opcaoMenuPrincipal = Console.ReadLine()?.ToUpper();
 
         if (opcaoMenuPrincipal == "1")
-            return new TelaCategoria(repositorioCategoria);
+            return new TelaCategoria(repositorioCategoria, repositorioProduto);
 
         if (opcaoMenuPrincipal == "2")
             return new TelaProduto(repositorioProduto, repositorioCategoria);

@@ -141,6 +141,37 @@ public class TelaProduto : TelaBase, ITelaOpcoes
             precoAproximado);
     }
 
+    protected override bool ExisteRegistroComInformacoesExclusivas(
+        EntidadeBase entidade, int? idIgnorado = null)
+    {
+        Produto produto = (Produto)entidade;
+
+        EntidadeBase[] produtos = repositorioProduto.SelecionarTodos();
+
+        for (int i = 0; i < produtos.Length; i++)
+        {
+            Produto p = (Produto)produtos[i];
+
+            if (p == null)
+                continue;
+
+            if (
+                p.Id != idIgnorado &&
+                p.Nome.ToLower() == produto.Nome.ToLower() &&
+                p.Categoria == produto.Categoria
+            )
+            {
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine($"Já existe um produto com o nome {p.Nome} na categoria!");
+                Console.WriteLine("---------------------------------");
+
+                return true;
+            }
+        }
+
+        return base.ExisteRegistroComInformacoesExclusivas(entidade, idIgnorado);
+    }
+
     private void VisualizarCategorias()
     {
         Console.WriteLine(
