@@ -11,12 +11,8 @@ public class TelaPrincipal
     private readonly RepositorioProduto repositorioProduto;
     private readonly RepositorioListaCompras repositorioListaCompras;
 
-    public TelaPrincipal()
+    public TelaPrincipal(ContextoJson contexto)
     {
-        ContextoJson contexto = new ContextoJson();
-
-        contexto.Carregar();
-
         repositorioCategoria = new RepositorioCategoria(contexto);
         repositorioProduto = new RepositorioProduto(contexto);
         repositorioListaCompras = new RepositorioListaCompras(contexto);
